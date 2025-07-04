@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Future Barber 💈 - Tu estilo, tu corte</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap');
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  body {
+    background: #1e1e2f;
+    color: #f0f0f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    background: #0d0d1a;
+    padding: 1.8rem 2rem;
+    text-align: center;
+    box-shadow: 0 2px 10px #ffae00aa;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: #ffae00;
+    text-shadow: 0 0 8px #ffae00cc;
+  }
+  header p {
+    font-weight: 300;
+    margin-top: 0.2rem;
+    color: #ccc;
+    font-style: italic;
+  }
+  main {
+    flex: 1;
+    max-width: 960px;
+    margin: 2rem auto 4rem;
+    padding: 0 1rem;
+  }
+  section {
+    margin-bottom: 3rem;
+  }
+  h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    color: #ffae00;
+    margin-bottom: 1rem;
+    border-bottom: 3px solid #ffae00;
+    padding-bottom: 0.3rem;
+    max-width: max-content;
+  }
+  /* GALERÍA */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 1.3rem;
+  }
+  .gallery img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px #ffae0022;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    object-fit: cover;
+    height: 150px;
+  }
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+  /* PRECIOS */
+  .prices {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .price-card {
+    background: #2b2b42;
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #ffae00cc;
+    text-align: center;
+    min-width: 160px;
+    cursor: default;
+    transition: box-shadow 0.3s ease;
+  }
+  .price-card:hover {
+    box-shadow: 0 0 20px #ffae00dd;
+  }
+  .price-card h3 {
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 0.7rem;
+    color: #ffae00;
+  }
+  .price-card p {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f0f0f5;
+  }
+  /* AGENDA TURNOS */
+  .booking {
+    background: #2b2b42dd;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #ffae00aa;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  .booking h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #ffae00;
+  }
+  .booking form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .booking label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #ddd;
+  }
+  .booking input, 
+  .booking select {
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+  }
+  .booking button {
+    margin-top: 0.5rem;
+    background: #ffae00;
+    border: none;
+    border-radius: 15px;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e1e2f;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ffae00cc;
+    transition: background-color 0.3s ease;
+  }
+  .booking button:hover {
+    background-color: #e59f00;
+  }
+  /* HORARIOS */
+  .hours {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ccc;
+    font-style: italic;
+  }
+  /* MAPA */
+  .map-container {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 30px #ffae00aa;
+    height: 320px;
+  }
+  /* CONTACTO */
+  .contact-btn {
+    background: #25D366;
+    color: white;
+    max-width: 260px;
+    margin: 3rem auto 1rem;
+    padding: 1rem 1.4rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 8px 20px rgba(37,211,102,0.6);
+    text-decoration: none;
+    transition: box-shadow 0.3s ease;
+  }
+  .contact-btn:hover {
+    box-shadow: 0 12px 30px rgba(37,211,102,0.9);
+  }
+  .contact-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+  }
+  /* FOOTER */
+  footer {
+    background: #0d0d1a;
+    text-align: center;
+    padding: 1rem 1rem;
+    color: #888;
+    font-weight: 500;
+  }
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .gallery img {
+      height: 120px;
+    }
+    .price-card {
+      min-width: 100%;
+    }
+    .booking {
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Future Barber 💈</h1>
+  <p>Tu estilo, tu corte, tu barbería de confianza</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>Galería de cortes</h2>
+    <div class="gallery">
+      <img src="image.png" alt="Corte moderno 1"  />
+      <img src="image copy.png" alt="Corte moderno 2" />
+      <img src="image copy 2.png" alt="Corte moderno 3" />
+      <img src="image copy 3.png" alt="Corte moderno 4" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Precios</h2>
+    <div class="prices">
+      <div class="price-card">
+        <h3>Corte clásico</h3>
+        <p>$10.000</p>
+      </div>
+      <div class="price-card">
+        <h3>Corte moderno</h3>
+        <p>$10.000</p>
+      </div>
+      <div class="price-card">
+        <h3>Afeitado y arreglo de barba</h3>
+        <p>$10.000</p>
+      </div>
+      <div class="price-card">
+        <h3>Peinado</h3>
+        <p>$10.000</p>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section>
+    <h2>Ubicación</h2>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.674315428222!2d-58.44325448479308!3d-34.60031878046005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccab5342173a5%3A0x5aa3a1a16e81bb40!2sBarber%C3%ADa!5e0!3m2!1ses!2sar!4v1688496723456!5m2!1ses!2sar"
+        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <a href="https://wa.me/549112345789" target="_blank" class="contact-btn" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" >
+      <path d="M20.52 3.48A11.91 11.91 0 0 0 12.08.01C6.09.02 1.24 5.03 1.24 11.06c0 1.95.58 3.75 1.58 5.28L0 24l7.94-2.14a11.04 11.04 0 0 0 4.14.8c5.99 0 10.84-5 10.84-11.07 0-2.96-1.21-5.68-3.4-7.99zM12.1 21.06c-1.27 0-2.5-.35-3.56-1l-.25-.14-4.71 1.27 1.26-4.62-.16-.26a8.85 8.85 0 0 1-1.41-4.81c0-4.9 4.23-8.87 9.45-8.87 2.53 0 4.9.96 6.67 2.72a9.07 9.07 0 0 1 2.7 6.6c0 5.15-4.5 9.32-9.5 9.32zM16.04 14.6c-.23-.12-1.37-.68-1.58-.75-.21-.07-.36-.12-.52.12s-.6.75-.74.9c-.14.15-.28.17-.52.06a6.53 6.53 0 0 1-1.92-1.18c-.71-.68-1.2-1.5-1.34-1.75-.14-.25-.02-.38.11-.5.12-.12.26-.3.39-.45.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.44-.07-.12-.52-1.25-.71-1.72-.19-.46-.39-.4-.52-.4-.14 0-.3 0-.46 0s-.44.06-.67.32c-.23.26-.9.88-.9 2.13 0 1.25.92 2.45 1.05 2.62.12.17 1.8 2.75 4.35 3.85a18.29 18.29 0 0 0 2.42 1.05c.32.13.63.11.87.07.27-.04 1.37-.56 1.56-1.1.18-.54.18-1 .13-1.1-.04-.1-.2-.16-.43-.28z"/>
+    </svg>
+    saca tu turno
+  </a>
+
+</main>
+
+<footer>
+  © 2025 Future Barber | Hecho con 💈 y pasión por tu estilo
+</footer>
+
+<script>
+  // Poner fecha mínima de hoy para reserva
+  const dateInput = document.getElementById('date');
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.min = today;
+
+  function sendBooking() {
+    const name = document.getElementById('name').value.trim();
+    const service = document.getElementById('service').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    if (!name || !service || !date || !time) {
+      alert('Por favor, completa todos los campos para reservar.');
+      return;
+    }
+    alert(`Gracias ${name}! Tu turno para ${service.replace(/-/g, ' ')} fue reservado para el ${date} a las ${time}. Te contactaremos pronto por WhatsApp.`);
+    document.getElementById('bookingForm').reset();
+  }
+</script>
+
+</body>
+</html>
